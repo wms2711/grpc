@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package bookcatalog;
+
+// The book message
+message Book {
+  int32 id = 1;
+  string title = 2;
+  string author = 3;
+  int32 year = 4;
+}
+
+// Request / response messages
+message ListBooksRequest {}
+message ListBooksResponse {
+  repeated Book books = 1;
+}
+
+message AddBookRequest {
+  string title = 1;
+  string author = 2;
+  int32 year = 3;
+}
+message AddBookResponse {
+  Book book = 1;
+}
+
+// Service definition
+service BookCatalog {
+  rpc ListBooks (ListBooksRequest) returns (ListBooksResponse);
+  rpc AddBook (AddBookRequest) returns (AddBookResponse);
+}
